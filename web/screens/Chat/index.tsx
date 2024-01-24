@@ -81,6 +81,31 @@ const ChatScreen = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [waitingToSendMessage, activeThreadId])
 
+  // useEffect(() => {
+  //   // focus textarea when creating a new thread or re-selecting an uninitialized thread
+  //   if (textareaRef.current != null) {
+  //     if (!activeThreadState?.isFinishInit) {
+  //       textareaRef.current.focus()
+  //     }
+  //   }
+  // }, [activeThreadState?.isFinishInit, activeThreadId]);
+
+  // useEffect(() => {
+  //   // focus textarea when creating a new thread, unfocuses on second click (matches ChatGPT UI behavior)
+  //   if (textareaRef.current != null) {
+  //     if (!activeThreadState?.isFinishInit) {
+  //       textareaRef.current.focus()
+  //     }
+  //   }
+  // }, [activeThreadState?.isFinishInit]);
+
+  useEffect(() => {
+    // focus textarea after selecting or creating threads
+    if (textareaRef.current != null) {
+      textareaRef.current.focus()
+    }
+  }, [activeThreadId]);
+
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = '40px'
